@@ -123,6 +123,7 @@ JS
   margin-right:1em;
   color:white;
   font-size:15px;
+  text-transform: uppercase;
   }
   p {
     margin: 0 0 -2px;
