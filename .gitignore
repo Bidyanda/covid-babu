@@ -39,9 +39,9 @@ phpunit.phar
 /index.php
 /robots.txt
 /myadmin
-composer.json
+#composer.json
 composer.lock
-
+/assets
 
 *.jpg
 *.jpeg
