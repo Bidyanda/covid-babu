@@ -49,15 +49,17 @@ class Patient extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    public $patient_symptoms,$under_lying_medical_condition;
     public function rules()
     {
         return [
             [['patient_id', 'patient_name', 'patient_occupation', 'age', 'aarogya_setu_app_download', 'gender', 'mobile', 'nationality', 'state_of_residence', 'district', 'patient_address', 'mobile_no_related_to', 'patient_category_id', 'created_by', 'updated_date', 'test_setting', 'testing_date'], 'required'],
             [['patient_id', 'age', 'nationality', 'state_of_residence', 'district', 'patient_address', 'patient_pin_code', 'patient_category_id', 'created_by', 'updated_by'], 'integer'],
             [['aarogya_setu_app_download', 'gender', 'patient_location_area', 'has_patient_lab_confirm_case', 'mobile_no_related_to', 'test_setting'], 'string'],
-            [['created_date', 'updated_date', 'testing_date'], 'safe'],
+            [['created_date', 'updated_date', 'testing_date','patient_symptoms','under_lying_medical_condition'], 'safe'],
             [['patient_name', 'father_name', 'patient_occupation'], 'string', 'max' => 255],
             [['mobile'], 'string', 'max' => 10],
+            [['patient_type'],'string'],
             [['patient_aadhar_no'], 'string', 'max' => 12],
             [['patient_category_id'], 'exist', 'skipOnError' => true, 'targetClass' => PatientCategory::className(), 'targetAttribute' => ['patient_category_id' => 'id']],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
@@ -72,8 +74,11 @@ class Patient extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'patient_id' => 'Patient ID',
+            'patient_symptoms' => 'Symptoms',
+            'under_lying_medical_condition' => 'Under Lying Medical Condition',
+            // 'patient_type' =>'Patient type',
             'patient_name' => 'Patient Name',
-            'father_name' => 'Father Name',
+            'father_name' => 'Father\'s Name',
             'patient_occupation' => 'Patient Occupation',
             'age' => 'Age',
             'aarogya_setu_app_download' => 'Aarogya Setu App Download',
@@ -86,7 +91,7 @@ class Patient extends \yii\db\ActiveRecord
             'patient_address' => 'Patient Address',
             'patient_pin_code' => 'Patient Pin Code',
             'patient_location_area' => 'Patient Location Area',
-            'has_patient_lab_confirm_case' => 'Has Patient Lab Confirm Case',
+            'has_patient_lab_confirm_case' => 'Has patient been comes in contact with a lab-confirmed case',
             'mobile_no_related_to' => 'Mobile No Related To',
             'patient_category_id' => 'Patient Category ID',
             'created_date' => 'Created Date',

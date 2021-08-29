@@ -128,4 +128,7 @@ JS
   p {
     margin: 0 0 -2px;
 }
+li>a {
+    font-size: 11px;
+}
 </style>

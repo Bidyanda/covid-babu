@@ -3,7 +3,10 @@
 namespace frontend\controllers;
 
 use frontend\models\Patient;
+use frontend\models\ClinicalData;
 use frontend\models\PatientSearch;
+use frontend\models\PatientSymptoms;
+use frontend\models\UnderlyingMedicalConditions;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -67,7 +70,7 @@ class PatientController extends Controller
     public function actionCreate()
     {
         $model = new Patient();
-
+        $clinical = new ClinicalData();
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -78,6 +81,7 @@ class PatientController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'clinical' => $clinical
         ]);
     }
 

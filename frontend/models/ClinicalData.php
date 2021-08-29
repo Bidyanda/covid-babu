@@ -51,7 +51,7 @@ class ClinicalData extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['patient_id', 'sample_collection_date', 'type_of_sample', 'sample_received_date', 'sample_id', 'sample_collect_form_id', 'covid_vaccine_received', 'date_sample_tested', 'mode_of_transport_visit_testing', 'is_patient_hospitalized', 'covid_vaccine_2nd_dose_received', 'Testing_kit_used', 'is_it_repeat_sample'], 'required'],
+            [['patient_id','symptom_status', 'sample_collection_date', 'type_of_sample', 'sample_received_date', 'sample_id', 'sample_collect_form_id', 'covid_vaccine_received', 'date_sample_tested', 'mode_of_transport_visit_testing', 'is_patient_hospitalized', 'covid_vaccine_2nd_dose_received', 'Testing_kit_used', 'is_it_repeat_sample'], 'required'],
             [['patient_id', 'type_of_sample', 'sample_id', 'sample_collect_form_id', 'mode_of_transport_visit_testing', 'type_of_vaccine_if_receive', 'Testing_kit_used'], 'integer'],
             [['sample_collection_date', 'sample_received_date', 'date_of_onset_symptom', 'date_of_vaccine_dose_1', 'date_of_vaccine_dose_2', 'date_sample_tested'], 'safe'],
             [['covid_vaccine_received', 'is_patient_hospitalized', 'covid_vaccine_2nd_dose_received', 'is_it_repeat_sample', 'final_result_of_sample'], 'string'],
@@ -74,7 +74,7 @@ class ClinicalData extends \yii\db\ActiveRecord
             'type_of_sample' => 'Type Of Sample',
             'sample_received_date' => 'Sample Received Date',
             'sample_id' => 'Sample ID',
-            'date_of_onset_symptom' => 'Date Of Onset Symptom',
+            'date_of_onset_symptom' => 'Date Of Onset Symptoms',
             'other_symptoms' => 'Other Symptoms',
             'other_underlying_medical_condition' => 'Other Underlying Medical Condition',
             'sample_collect_form_id' => 'Sample Collect Form ID',
@@ -90,6 +90,7 @@ class ClinicalData extends \yii\db\ActiveRecord
             'is_it_repeat_sample' => 'Is It Repeat Sample',
             'final_result_of_sample' => 'Final Result Of Sample',
             'remark' => 'Remark',
+            'symptom_status' => 'Symptom Status'
         ];
     }
 

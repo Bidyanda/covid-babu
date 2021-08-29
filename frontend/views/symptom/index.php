@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel frontend\models\SamptomsSearch */
+/* @var $searchModel frontend\models\SymptomSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Samptoms';
+$this->title = 'Symptoms';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="samptoms-index">
+<div class="symptom-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Samptoms', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Symptom', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

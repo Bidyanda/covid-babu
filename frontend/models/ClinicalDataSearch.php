@@ -17,7 +17,7 @@ class ClinicalDataSearch extends ClinicalData
     public function rules()
     {
         return [
-            [['id', 'patient_id', 'type_of_sample', 'sample_id', 'sample_collect_form_id', 'mode_of_transport_visit_testing', 'type_of_vaccine_if_receive', 'Testing_kit_used'], 'integer'],
+            [['id', 'patient_id','symptom_status', 'type_of_sample', 'sample_id', 'sample_collect_form_id', 'mode_of_transport_visit_testing', 'type_of_vaccine_if_receive', 'Testing_kit_used'], 'integer'],
             [['sample_collection_date', 'sample_received_date', 'date_of_onset_symptom', 'other_symptoms', 'other_underlying_medical_condition', 'covid_vaccine_received', 'date_of_vaccine_dose_1', 'date_of_vaccine_dose_2', 'date_sample_tested', 'is_patient_hospitalized', 'covid_vaccine_2nd_dose_received', 'is_it_repeat_sample', 'final_result_of_sample', 'remark'], 'safe'],
         ];
     }
@@ -60,6 +60,7 @@ class ClinicalDataSearch extends ClinicalData
         $query->andFilterWhere([
             'id' => $this->id,
             'patient_id' => $this->patient_id,
+            'symptom_status' => $this->symptom_status,
             'sample_collection_date' => $this->sample_collection_date,
             'type_of_sample' => $this->type_of_sample,
             'sample_received_date' => $this->sample_received_date,

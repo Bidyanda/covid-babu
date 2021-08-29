@@ -17,7 +17,7 @@ class PatientSearch extends Patient
     public function rules()
     {
         return [
-            [['id', 'patient_id', 'age', 'nationality', 'state_of_residence', 'district', 'patient_address', 'patient_pin_code', 'patient_category_id', 'created_by', 'updated_by'], 'integer'],
+            [['id', 'patient_id', 'age','nationality', 'state_of_residence', 'district', 'patient_address', 'patient_pin_code', 'patient_category_id', 'created_by', 'updated_by'], 'integer'],
             [['patient_name', 'father_name', 'patient_occupation', 'aarogya_setu_app_download', 'gender', 'mobile', 'patient_aadhar_no', 'patient_location_area', 'has_patient_lab_confirm_case', 'mobile_no_related_to', 'created_date', 'updated_date', 'test_setting', 'testing_date'], 'safe'],
         ];
     }

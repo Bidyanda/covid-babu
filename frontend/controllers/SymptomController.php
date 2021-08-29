@@ -2,16 +2,16 @@
 
 namespace frontend\controllers;
 
-use frontend\models\Samptoms;
-use frontend\models\SamptomsSearch;
+use frontend\models\Symptom;
+use frontend\models\SymptomSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * SamptomsController implements the CRUD actions for Samptoms model.
+ * SymptomController implements the CRUD actions for Symptom model.
  */
-class SamptomsController extends Controller
+class SymptomController extends Controller
 {
     /**
      * @inheritDoc
@@ -32,12 +32,12 @@ class SamptomsController extends Controller
     }
 
     /**
-     * Lists all Samptoms models.
+     * Lists all Symptom models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new SamptomsSearch();
+        $searchModel = new SymptomSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -47,7 +47,7 @@ class SamptomsController extends Controller
     }
 
     /**
-     * Displays a single Samptoms model.
+     * Displays a single Symptom model.
      * @param int $id ID
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -60,13 +60,13 @@ class SamptomsController extends Controller
     }
 
     /**
-     * Creates a new Samptoms model.
+     * Creates a new Symptom model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Samptoms();
+        $model = new Symptom();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -82,7 +82,7 @@ class SamptomsController extends Controller
     }
 
     /**
-     * Updates an existing Samptoms model.
+     * Updates an existing Symptom model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return mixed
@@ -102,7 +102,7 @@ class SamptomsController extends Controller
     }
 
     /**
-     * Deletes an existing Samptoms model.
+     * Deletes an existing Symptom model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return mixed
@@ -116,15 +116,15 @@ class SamptomsController extends Controller
     }
 
     /**
-     * Finds the Samptoms model based on its primary key value.
+     * Finds the Symptom model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Samptoms the loaded model
+     * @return Symptom the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Samptoms::findOne($id)) !== null) {
+        if (($model = Symptom::findOne($id)) !== null) {
             return $model;
         }
 

@@ -12,7 +12,7 @@ use Yii;
  *
  * @property PatientSymptoms[] $patientSymptoms
  */
-class Samptoms extends \yii\db\ActiveRecord
+class Symptom extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}

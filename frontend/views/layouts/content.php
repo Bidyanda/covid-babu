@@ -5,9 +5,9 @@ use dmstr\widgets\Alert;
 ?>
 <div class="content-wrapper" style="background-color:white">
     <section class="content-header">
-        <!-- <h1 class="page-title"><?//= $this->title ?></h1> -->
+        <h1 class="page-title" style="font-size:16px"><?= $this->title ?></h1>
 
-        <?= Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],]) ?>
+        <!-- <?//= Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],]) ?> -->
     </section>
 
     <section class="content">

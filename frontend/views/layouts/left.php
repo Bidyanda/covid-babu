@@ -24,7 +24,7 @@
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
                     ['label' => 'Dashboard', 'icon' => 'dashboard', 'url' => ['/site/index']],
-                    ['label' => 'Add New Record', 'icon' => 'chain', 'url' => ['/hospital/index']],
+                    ['label' => 'Add New Record', 'icon' => 'chain', 'url' => ['/patient/create']],
                     ['label' => 'Add Record from SRF Portal', 'icon' => 'chain', 'url' => ['/staff/index']],
                     ['label' => 'List/Edit/Followup', 'icon' => 'chain', 'url' => ['/member/index']],
                     ['label' => 'Search Patient', 'icon' => 'chain', 'url' => ['/plan-enrollment/subscribers']],

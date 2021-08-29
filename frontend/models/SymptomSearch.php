@@ -4,12 +4,12 @@ namespace frontend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\Samptoms;
+use frontend\models\Symptom;
 
 /**
- * SamptomsSearch represents the model behind the search form of `frontend\models\Samptoms`.
+ * SymptomSearch represents the model behind the search form of `frontend\models\Symptom`.
  */
-class SamptomsSearch extends Samptoms
+class SymptomSearch extends Symptom
 {
     /**
      * {@inheritdoc}
@@ -40,7 +40,7 @@ class SamptomsSearch extends Samptoms
      */
     public function search($params)
     {
-        $query = Samptoms::find();
+        $query = Symptom::find();
 
         // add conditions that should always apply here
 
