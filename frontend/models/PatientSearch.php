@@ -14,11 +14,12 @@ class PatientSearch extends Patient
     /**
      * {@inheritdoc}
      */
+    public $final_status;
     public function rules()
     {
         return [
             [['id', 'patient_id', 'age','nationality', 'state_of_residence', 'district', 'patient_address', 'patient_pin_code', 'patient_category_id', 'created_by', 'updated_by'], 'integer'],
-            [['patient_name', 'father_name', 'patient_occupation', 'aarogya_setu_app_download', 'gender', 'mobile', 'patient_aadhar_no', 'patient_location_area', 'has_patient_lab_confirm_case', 'mobile_no_related_to', 'created_date', 'updated_date', 'test_setting', 'testing_date'], 'safe'],
+            [['patient_name', 'father_name', 'patient_occupation', 'aarogya_setu_app_download', 'gender', 'mobile', 'patient_aadhar_no', 'patient_location_area', 'has_patient_lab_confirm_case', 'mobile_no_related_to', 'created_date', 'updated_date', 'test_setting', 'testing_date','final_status'], 'safe'],
         ];
     }
 
@@ -40,7 +41,7 @@ class PatientSearch extends Patient
      */
     public function search($params)
     {
-        $query = Patient::find();
+        $query = Patient::find()->select('patient.*,clinical_data.final_result_of_sample as final_status')->leftjoin('clinical_data','clinical_data.patient_id=patient.id');
 
         // add conditions that should always apply here
 

@@ -51,11 +51,12 @@ class ClinicalData extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['patient_id','symptom_status', 'sample_collection_date', 'type_of_sample', 'sample_received_date', 'sample_id', 'sample_collect_form_id', 'covid_vaccine_received', 'date_sample_tested', 'mode_of_transport_visit_testing', 'is_patient_hospitalized', 'covid_vaccine_2nd_dose_received', 'Testing_kit_used', 'is_it_repeat_sample'], 'required'],
-            [['patient_id', 'type_of_sample', 'sample_id', 'sample_collect_form_id', 'mode_of_transport_visit_testing', 'type_of_vaccine_if_receive', 'Testing_kit_used'], 'integer'],
-            [['sample_collection_date', 'sample_received_date', 'date_of_onset_symptom', 'date_of_vaccine_dose_1', 'date_of_vaccine_dose_2', 'date_sample_tested'], 'safe'],
+            [['patient_id','symptom_status','type_of_sample', 'sample_collection_date', 'sample_received_date', 'sample_id', 'covid_vaccine_received', 'date_sample_tested', 'mode_of_transport_visit_testing', 'is_patient_hospitalized', 'covid_vaccine_2nd_dose_received', 'Testing_kit_used', 'is_it_repeat_sample'], 'required'],
+            [['patient_id',  'sample_id', 'sample_collect_form_id', 'mode_of_transport_visit_testing', 'type_of_vaccine_if_receive', 'Testing_kit_used'], 'integer'],
+            [['sample_collection_date', 'sample_received_date', 'date_of_onset_symptom', 'date_of_vaccine_dose_1', 'date_of_vaccine_dose_2', 'date_sample_tested', 'sample_collect_form_id'], 'safe'],
             [['covid_vaccine_received', 'is_patient_hospitalized', 'covid_vaccine_2nd_dose_received', 'is_it_repeat_sample', 'final_result_of_sample'], 'string'],
             [['other_symptoms', 'other_underlying_medical_condition', 'remark'], 'string', 'max' => 255],
+            [[ 'type_of_sample'],'string'],
             [['sample_id'], 'unique'],
             [['Testing_kit_used'], 'exist', 'skipOnError' => true, 'targetClass' => TestingKit::className(), 'targetAttribute' => ['Testing_kit_used' => 'id']],
             [['type_of_vaccine_if_receive'], 'exist', 'skipOnError' => true, 'targetClass' => VaccineType::className(), 'targetAttribute' => ['type_of_vaccine_if_receive' => 'id']],
@@ -77,7 +78,7 @@ class ClinicalData extends \yii\db\ActiveRecord
             'date_of_onset_symptom' => 'Date Of Onset Symptoms',
             'other_symptoms' => 'Other Symptoms',
             'other_underlying_medical_condition' => 'Other Underlying Medical Condition',
-            'sample_collect_form_id' => 'Sample Collect Form ID',
+            'sample_collect_form_id' => 'Sample Collect Form',
             'covid_vaccine_received' => 'Covid Vaccine Received',
             'date_of_vaccine_dose_1' => 'Date Of Vaccine Dose 1',
             'date_of_vaccine_dose_2' => 'Date Of Vaccine Dose 2',

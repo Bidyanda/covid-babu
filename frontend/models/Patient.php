@@ -49,17 +49,17 @@ class Patient extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public $patient_symptoms,$under_lying_medical_condition;
+    public $patient_symptoms,$under_lying_medical_condition,$final_status;
     public function rules()
     {
         return [
-            [['patient_id', 'patient_name', 'patient_occupation', 'age', 'aarogya_setu_app_download', 'gender', 'mobile', 'nationality', 'state_of_residence', 'district', 'patient_address', 'mobile_no_related_to', 'patient_category_id', 'created_by', 'updated_date', 'test_setting', 'testing_date'], 'required'],
-            [['patient_id', 'age', 'nationality', 'state_of_residence', 'district', 'patient_address', 'patient_pin_code', 'patient_category_id', 'created_by', 'updated_by'], 'integer'],
+            [['patient_id', 'patient_name', 'patient_occupation', 'age', 'aarogya_setu_app_download', 'gender', 'mobile', 'nationality', 'state_of_residence', 'district', 'patient_address', 'mobile_no_related_to', 'patient_category_id', 'created_by', 'test_setting', 'testing_date'], 'required'],
+            [['patient_id', 'age', 'nationality', 'state_of_residence', 'district', 'patient_category_id', 'created_by', 'updated_by'], 'integer'],
             [['aarogya_setu_app_download', 'gender', 'patient_location_area', 'has_patient_lab_confirm_case', 'mobile_no_related_to', 'test_setting'], 'string'],
-            [['created_date', 'updated_date', 'testing_date','patient_symptoms','under_lying_medical_condition'], 'safe'],
-            [['patient_name', 'father_name', 'patient_occupation'], 'string', 'max' => 255],
+            [['created_date', 'updated_date', 'testing_date','patient_symptoms','under_lying_medical_condition' ,'updated_date','final_status'], 'safe'],
+            [['patient_name', 'father_name', 'patient_occupation', 'patient_address'], 'string', 'max' => 255],
             [['mobile'], 'string', 'max' => 10],
-            [['patient_type'],'string'],
+            // [['patient_type','patient_pin_code'],'string'],
             [['patient_aadhar_no'], 'string', 'max' => 12],
             [['patient_category_id'], 'exist', 'skipOnError' => true, 'targetClass' => PatientCategory::className(), 'targetAttribute' => ['patient_category_id' => 'id']],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
@@ -100,6 +100,7 @@ class Patient extends \yii\db\ActiveRecord
             'updated_by' => 'Updated By',
             'test_setting' => 'Test Setting',
             'testing_date' => 'Testing Date',
+            'final_status'=> 'Final Status'
         ];
     }
 

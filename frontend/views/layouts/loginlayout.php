@@ -45,3 +45,9 @@ AppAsset::register($this);
 </body>
 </html>
 <?php $this->endPage() ?>
+<style>
+  /* .wrap{
+    background-image: url("/images/login2.jpg");
+    background-repeat: no-repeat;
+  } */
+</style>

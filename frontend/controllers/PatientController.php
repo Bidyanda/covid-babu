@@ -1,7 +1,7 @@
 <?php
 
 namespace frontend\controllers;
-
+use Yii;
 use frontend\models\Patient;
 use frontend\models\ClinicalData;
 use frontend\models\PatientSearch;
@@ -72,8 +72,62 @@ class PatientController extends Controller
         $model = new Patient();
         $clinical = new ClinicalData();
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post()) && $clinical->load(Yii::$app->request->post())) {
+                $transaction = Yii::$app->db->beginTransaction();
+                $model->created_by = Yii::$app->user->identity->id;
+                $model->testing_date = date('Y-m-d');
+                $flag = 1;
+                try{
+                  if($model->save()){
+                    $clinical->patient_id = $model->id;
+                    if($clinical->save()){
+                      if($model->patient_symptoms){
+                        $p_items = [];
+                				foreach ($model->patient_symptoms as $item) {
+                						$p_items[] = [
+                								$clinical->id,
+                								$item
+                						];
+                				}
+                				$batch_insert = Yii::$app->db->createCommand()->batchInsert('patient_symptoms', ['clinical_data_id', 'symptom_id'], $p_items)->execute();
+                        if(!$batch_insert){
+                          $flag = 0;
+                        }
+                      }
+                      if($model->under_lying_medical_condition){
+                        $mc_items = [];
+                        foreach ($model->under_lying_medical_condition as $item) {
+                            $mc_items[] = [
+                                $clinical->id,
+                                $item
+                            ];
+                        }
+                        $batch_insert = Yii::$app->db->createCommand()->batchInsert('underlying_medical_condition', ['clinical_data_id', 'medical_condition_id'], $mc_items)->execute();
+                        if(!$batch_insert){
+                          $flag = 0;
+                        }
+                      }
+                    }else {
+                      echo "<pre>";
+                      var_dump($clinical);
+                      var_dump($clinical->errors);die;
+                    }
+                  }else{
+                    var_dump($model->errors);die;
+                    $flag = 0;
+                  }
+                  if($flag){
+                    $transaction->commit();
+                    Yii::$app->session->setFlash('success','Record inserted successfully');
+                  }else {
+                    $transaction->rollBack();
+                    Yii::$app->session->setFlash('danger','Record inserted failed.');
+                  }
+                }catch(Exception $e){
+                  $transaction->rollBack();
+                  Yii::$app->session->setFlash('danger','Record inserted failed.');
+                }
+                return $this->redirect(Yii::$app->request->referrer);
             }
         } else {
             $model->loadDefaultValues();

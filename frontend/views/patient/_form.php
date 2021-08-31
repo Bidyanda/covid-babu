@@ -5,13 +5,18 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use frontend\models\PatientCategory;
 use frontend\models\Symptom;
+use frontend\models\VaccineType;
 use frontend\models\MedicalCondition;
 use dosamigos\datepicker\DatePicker;
+use frontend\models\TestingKit;
+$testingKit = ArrayHelper::map(TestingKit::find()->all(),'id','name');
+$transport = [1=>'Bus',2=>'Car',3=>'Bi-cyle',4=>'Bike'];
 $sample = ['Nasopharyngeal & Oropharyngeal'=>'Nasopharyngeal & Oropharyngeal','Nasopharyngeal Swab'=>'Nasopharyngeal swab','Oropharyngeal swab'=>'Oropharyngeal swab','Nasal swab'=>'Nasal swab','Throat swab'=>'Throat swab','Saliva'=>'Saliva','Sputum'=>'Sputum','BAL'=>'BAL','ETA'=>'ETA'];
-$nationality = ['Indian' => 'Indian'];
-$state = ['Manipur' => 'Manipur'];
-$district = ['Imphal-East' => 'Imphal-East','Imphal-West' =>'Imphal-West'];
+$nationality = ['1' => 'Indian'];
+$state = ['1' => 'Manipur'];
+$district = [1 => 'Imphal-East',2 =>'Imphal-West'];
 $category = ArrayHelper::map(PatientCategory::find()->all(),'id','category');
+$vaccine = ArrayHelper::map(VaccineType::find()->all(),'id','name');
 $medicalCondition = ArrayHelper::map(MedicalCondition::find()->all(),'id','name');
 $symptom = ArrayHelper::map(Symptom::find()->all(),'id','name');
 $occupation = ['Health Care Worker'=>'Health Care Worker','Police'=>'Police','Sanitation'=>'Sanitation','Security Guards'=>'Security Gards','Others'=>'Others'];
@@ -80,12 +85,12 @@ $occupation = ['Health Care Worker'=>'Health Care Worker','Police'=>'Police','Sa
             </div>
             <div class="row">
               <div class="col-md-12">
-                <?= $form->field($model, 'state_of_residence')->textInput($state,['prompt' =>'Select State/UT']) ?>
+                <?= $form->field($model, 'state_of_residence')->dropDownList($state,['prompt' =>'Select State/UT']) ?>
               </div>
             </div>
             <div class="row">
               <div class="col-md-12">
-                <?= $form->field($model, 'district')->textInput($district,['prompt' =>'Select District']) ?>
+                <?= $form->field($model, 'district')->dropDownList($district,['prompt' =>'Select District']) ?>
               </div>
             </div>
             <div class="row">
@@ -121,7 +126,18 @@ $occupation = ['Health Care Worker'=>'Health Care Worker','Police'=>'Police','Sa
       <div class="col-md-6">
         <div class="row">
           <div class="col-md-12">
-            <?= $form->field($clinical, 'sample_collection_date')->textInput() ?>
+            <!-- <?//= $form->field($clinical, 'sample_collection_date')->textInput() ?> -->
+            <?= $form->field($clinical, 'sample_collection_date')->widget(
+                      DatePicker::className(), [
+                          // inline too, not bad
+                           // 'inline' => true,
+                           // modify template for custom rendering
+                          // 'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+                          'clientOptions' => [
+                              'autoclose' => true,
+                              'format' => 'yyyy-m-dd'
+                          ]
+                  ]);?>
           </div>
         </div>
         <div class="row">
@@ -146,7 +162,7 @@ $occupation = ['Health Care Worker'=>'Health Care Worker','Police'=>'Police','Sa
         </div>
         <div class="row">
           <div class="col-md-12">
-            <?= $form->field($clinical, 'sample_collect_form_id')->dropDownList(['prompt' =>'Select Any One(Only if Community Settings is relected earlier)']) ?>
+            <?= $form->field($clinical, 'sample_collect_form_id')->dropDownList([],['prompt' =>'Select Any One(Only if Community Settings is relected earlier)']) ?>
           </div>
         </div>
         <div class="row">
@@ -156,12 +172,34 @@ $occupation = ['Health Care Worker'=>'Health Care Worker','Police'=>'Police','Sa
         </div>
         <div class="row">
           <div class="col-md-12">
-            <?= $form->field($clinical, 'date_of_vaccine_dose_1')->textInput() ?>
+            <?= $form->field($clinical, 'date_of_vaccine_dose_1')->widget(
+                      DatePicker::className(), [
+                          // inline too, not bad
+                           // 'inline' => true,
+                           // modify template for custom rendering
+                          // 'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+                          'clientOptions' => [
+                              'autoclose' => true,
+                              'format' => 'yyyy-m-dd'
+                          ]
+                  ]);?>
+            <!-- <?//= $form->field($clinical, 'date_of_vaccine_dose_1')->textInput() ?> -->
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <?= $form->field($clinical, 'date_of_vaccine_dose_2')->textInput() ?>
+            <?= $form->field($clinical, 'date_of_vaccine_dose_2')->widget(
+                      DatePicker::className(), [
+                          // inline too, not bad
+                           // 'inline' => true,
+                           // modify template for custom rendering
+                          // 'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+                          'clientOptions' => [
+                              'autoclose' => true,
+                              'format' => 'yyyy-m-dd'
+                          ]
+                  ]);?>
+            <!-- <?//= $form->field($clinical, 'date_of_vaccine_dose_2')->textInput() ?> -->
           </div>
         </div>
         <div class="row">
@@ -187,7 +225,7 @@ $occupation = ['Health Care Worker'=>'Health Care Worker','Police'=>'Police','Sa
         </div>
         <div class="row">
           <div class="col-md-12">
-            <?= $form->field($clinical, 'mode_of_transport_visit_testing')->textInput() ?>
+            <?= $form->field($clinical, 'mode_of_transport_visit_testing')->dropDownList($transport,['prompt'=>'--Select any one--']) ?>
           </div>
         </div>
       </div>
@@ -226,7 +264,7 @@ $occupation = ['Health Care Worker'=>'Health Care Worker','Police'=>'Police','Sa
                               'format' => 'yyyy-m-dd'
                           ]
                   ]);?>
-            <?= $form->field($clinical, 'date_of_onset_symptom')->textInput() ?>
+            <!-- <?//= $form->field($clinical, 'date_of_onset_symptom')->textInput() ?> -->
           </div>
         </div>
         <div class="row">
@@ -246,7 +284,7 @@ $occupation = ['Health Care Worker'=>'Health Care Worker','Police'=>'Police','Sa
         </div>
         <div class="row">
           <div class="col-md-12">
-            <?= $form->field($clinical, 'type_of_vaccine_if_receive')->dropDownList(['prompt'=>'Select Vaccine']) ?>
+            <?= $form->field($clinical, 'type_of_vaccine_if_receive')->dropDownList($vaccine,['prompt'=>'Select Vaccine']) ?>
           </div>
         </div>
         <div class="row">
@@ -256,7 +294,7 @@ $occupation = ['Health Care Worker'=>'Health Care Worker','Police'=>'Police','Sa
         </div>
         <div class="row">
           <div class="col-md-12">
-            <?= $form->field($clinical, 'Testing_kit_used')->textInput() ?>
+            <?= $form->field($clinical, 'Testing_kit_used')->dropDownList($testingKit,['prompt'=>'Select Kit']) ?>
           </div>
         </div>
         <div class="row">
