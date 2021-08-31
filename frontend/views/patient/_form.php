@@ -6,6 +6,7 @@ use yii\widgets\ActiveForm;
 use frontend\models\PatientCategory;
 use frontend\models\Symptom;
 use frontend\models\MedicalCondition;
+use dosamigos\datepicker\DatePicker;
 $sample = ['Nasopharyngeal & Oropharyngeal'=>'Nasopharyngeal & Oropharyngeal','Nasopharyngeal Swab'=>'Nasopharyngeal swab','Oropharyngeal swab'=>'Oropharyngeal swab','Nasal swab'=>'Nasal swab','Throat swab'=>'Throat swab','Saliva'=>'Saliva','Sputum'=>'Sputum','BAL'=>'BAL','ETA'=>'ETA'];
 $nationality = ['Indian' => 'Indian'];
 $state = ['Manipur' => 'Manipur'];
@@ -165,7 +166,18 @@ $occupation = ['Health Care Worker'=>'Health Care Worker','Police'=>'Police','Sa
         </div>
         <div class="row">
           <div class="col-md-12">
-            <?= $form->field($clinical, 'date_sample_tested')->textInput() ?>
+            <?= $form->field($clinical, 'date_sample_tested')->widget(
+                      DatePicker::className(), [
+                          // inline too, not bad
+                           // 'inline' => true,
+                           // modify template for custom rendering
+                          // 'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+                          'clientOptions' => [
+                              'autoclose' => true,
+                              'format' => 'yyyy-m-dd'
+                          ]
+                  ]);?>
+            <!-- <?//= $form->field($clinical, 'date_sample_tested')->textInput() ?> -->
           </div>
         </div>
         <div class="row">
@@ -182,7 +194,18 @@ $occupation = ['Health Care Worker'=>'Health Care Worker','Police'=>'Police','Sa
       <div class="col-md-6">
         <div class="row">
           <div class="col-md-12">
-            <?= $form->field($clinical, 'sample_received_date')->textInput() ?>
+            <?= $form->field($clinical, 'sample_received_date')->widget(
+                      DatePicker::className(), [
+                          // inline too, not bad
+                           // 'inline' => true,
+                           // modify template for custom rendering
+                          // 'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+                          'clientOptions' => [
+                              'autoclose' => true,
+                              'format' => 'yyyy-m-dd'
+                          ]
+                  ]);?>
+            <!-- <?//= $form->field($clinical, 'sample_received_date')->textInput() ?> -->
           </div>
         </div>
         <div class="row">
@@ -192,6 +215,17 @@ $occupation = ['Health Care Worker'=>'Health Care Worker','Police'=>'Police','Sa
         </div>
         <div class="row">
           <div class="col-md-12">
+            <?= $form->field($clinical, 'date_of_onset_symptom')->widget(
+                      DatePicker::className(), [
+                          // inline too, not bad
+                           // 'inline' => true,
+                           // modify template for custom rendering
+                          // 'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+                          'clientOptions' => [
+                              'autoclose' => true,
+                              'format' => 'yyyy-m-dd'
+                          ]
+                  ]);?>
             <?= $form->field($clinical, 'date_of_onset_symptom')->textInput() ?>
           </div>
         </div>
