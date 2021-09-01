@@ -8,10 +8,10 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use frontend\assets\AppAsset;
+use frontend\assets\AppAssetLogin;
 use common\widgets\Alert;
 
-AppAsset::register($this);
+AppAssetLogin::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -27,19 +27,15 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<div class="wrap" align='center'>
-    <div class="container" >
         <?= $content ?>
-    </div>
-</div>
 
-<footer class="footer">
+<!-- <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
+        <p class="pull-left">&copy; <?//= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-right"><?//= Yii::powered() ?></p>
     </div>
-</footer>
+</footer> -->
 
 <?php $this->endBody() ?>
 </body>
