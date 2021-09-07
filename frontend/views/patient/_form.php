@@ -10,7 +10,7 @@ use frontend\models\MedicalCondition;
 use dosamigos\datepicker\DatePicker;
 use frontend\models\TestingKit;
 $testingKit = ArrayHelper::map(TestingKit::find()->all(),'id','name');
-$transport = [1=>'Bus',2=>'Car',3=>'Bi-cyle',4=>'Bike'];
+$transport = [1=>'Bus',2=>'Car',3=>'Bi-cycle',4=>'Bike',5=>'Others'];
 $sample = ['Nasopharyngeal & Oropharyngeal'=>'Nasopharyngeal & Oropharyngeal','Nasopharyngeal Swab'=>'Nasopharyngeal swab','Oropharyngeal swab'=>'Oropharyngeal swab','Nasal swab'=>'Nasal swab','Throat swab'=>'Throat swab','Saliva'=>'Saliva','Sputum'=>'Sputum','BAL'=>'BAL','ETA'=>'ETA'];
 $nationality = ['1' => 'Indian'];
 $state = ['1' => 'Manipur'];
